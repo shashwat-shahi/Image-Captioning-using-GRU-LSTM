@@ -1,0 +1,43 @@
+image_processing:
+  # Based on image size distribution shown in plots
+  target_size: [224, 224]  # Standard ResNet50 size
+  batch_size: 32  # Based on memory efficiency
+  max_pixel_value: 255
+
+dataset:
+  image_dir: './flickr8k'
+  captions_file: 'captions.txt'
+  # Based on caption length distribution
+  max_words_per_caption: 38  # From box plot
+  min_words_per_caption: 1
+
+pinecone:
+  api_key: "c4b764c9-695b-44cf-9e0c-b2693a8598c5"
+  index_name: "flickr8k-features"
+  dimension: 2048  # ResNet50 feature dimension
+  chunk_size: 50
+
+visualization:
+  # Based on the image size distribution shown
+  figure_size: [20, 15]
+  bins: 50
+  pca_components: 2
+  correlation_dimensions: 20
+
+model:
+  max_length: 30
+  embedding_dim: 256
+  lstm_units: 512
+
+training:
+  epochs: 50
+  batch_size: 32
+  early_stopping_patience: 5
+
+data:
+  batch_size: 100
+  train_split: 0.7
+  val_split: 0.15
+
+logging:
+  level: "INFO"
